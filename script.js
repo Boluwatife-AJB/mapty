@@ -15,6 +15,8 @@ class Workout {
 }
 
 class Running extends Workout {
+  type = 'running';
+
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
@@ -29,9 +31,12 @@ class Running extends Workout {
 }
 
 class Cycling extends Workout {
+  type = 'cycling';
+
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
     this.cadence = elevationGain;
+    // this.type = 'cycling';
     this.calcSpeed();
   }
 
@@ -159,8 +164,21 @@ class App {
     this.#workouts.push(workout);
     console.log(workout);
 
-    // Render workout on List as marker
-    L.marker([lat, lng])
+    // Render workout on map as marker
+    this.renderWorkoutMarker(workout);
+
+    // Render workout on list
+
+    // Hide form + clear input fields
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        '';
+  }
+
+  renderWorkoutMarker(workout) {
+    L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -168,20 +186,11 @@ class App {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: 'prayer-walk',
+          className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent('Prayer Walk')
+      .setPopupContent('Evangelism')
       .openPopup();
-
-    // Hide form + clear input fields
-
-    // Clear Input Fields
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        '';
   }
 }
 

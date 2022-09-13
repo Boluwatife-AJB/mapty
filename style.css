@@ -1,7 +1,6 @@
 :root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
-  --color-brand--3: #e45321;
+  --color-brand--1: #ffb200;
+  --color-brand--2: #1c6758;
 
   --color-dark--1: #2d3439;
   --color-dark--2: #42484d;
@@ -218,7 +217,4 @@ a:visited {
 }
 .cycling-popup .leaflet-popup-content-wrapper {
   border-left: 5px solid var(--color-brand--1);
-}
-.prayer-walk .leaflet-popup-content-wrapper {
-  border-left: 5px solid var(--color-brand--3);
 }
